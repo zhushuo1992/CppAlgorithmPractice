@@ -2,6 +2,11 @@
     "files.associations": {
         "algorithm": "cpp",
         "ostream": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "sstream": "cpp",
+        "iostream": "cpp",
+        "map": "cpp",
+        "set": "cpp",
+        "unordered_map": "cpp"
     }
 }
