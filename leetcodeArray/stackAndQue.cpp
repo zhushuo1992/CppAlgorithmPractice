@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <map>
 #include <queue>
+#include <algorithm>
 #include <cassert>
 
 using namespace std;
@@ -156,6 +158,44 @@ public:
         }
 
         return res[n];
+
+    }
+
+    //347
+    vector<int> topKFrequent(vector<int>& nums, int k) 
+    {
+        map<int, int> freq;
+        for(int i=0;i<nums.size(); i++)
+        {
+            freq[nums[i]]++;
+        }
+
+        priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int>>> q;
+
+        for(auto iter = freq.begin(); iter != freq.end();  iter++)
+        {
+            if(q.size() < k)
+            {
+                q.push(make_pair(iter->second, iter->first));
+            }
+            else
+            {
+                if(q.top().first < iter->second)
+                {
+                    q.pop();
+                    q.push(make_pair(iter->second, iter->first));
+                }
+            }
+            
+        }
+        vector<int> res;
+        while(!q.empty())
+        {
+            res.push_back(q.top().second);
+            q.pop();
+        }
+        reverse(res.begin(), res.end());
+        return res;
 
     }
 
